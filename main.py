@@ -17,7 +17,7 @@
 import matplotlib.pyplot as plt
 from polyfit import PolynomRegressor, Constraints
 import pandas as pd
-
+import numpy as np
 # from sklearn.preprocessing import PolynomialFeatures,StandardScaler, MinMaxScaler
 # from sklearn.linear_model import Ridge, Lasso, ElasticNet
 #%%
@@ -34,10 +34,13 @@ monotone_constraint = Constraints(monotonicity='inc',gridpoints=27,curvature = '
 polyestimator.fit(df['Vrev'].values.reshape(-1, 1), df['Crev'].values, constraints={0: monotone_constraint}, verbose=True)
 
 ya=polyestimator.predict(df['Vrev'].values.reshape(-1, 1))
+x_gen = np.arange(-18, 1.2, 0.01)
+y_gen = polyestimator.predict(x_gen.reshape(-1, 1))
+
 
 plt.figure(figsize=(10, 6))
 plt.scatter(df['Vrev'], df['Crev'], color='blue', label='Original Data')
-plt.plot(df['Vrev'], ya, color='red', label='Approximation')
+plt.plot(x_gen, y_gen, color='red', label='Approximation')
 plt.xlabel('Vrev')
 plt.ylabel('Crev')
 plt.title('Original Data vs. Approximation')
