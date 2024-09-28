@@ -46,7 +46,7 @@ plt.ylabel('Crev')
 plt.title('Original Data vs. Approximation')
 plt.legend()
 plt.show()
-
+# 2
 coefs = polyestimator.coeffs_
 # array([ 1.07050878e+00,  4.58309582e-01,  3.73927618e-01,  1.79947258e-01,
 #         5.05053240e-02,  8.39418294e-03,  7.85497372e-04,  3.09316538e-05,
